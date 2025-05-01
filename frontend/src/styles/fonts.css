@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Thin-Trial.woff2') format('woff2');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-ThinItalic-Trial.woff2') format('woff2');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Light-Trial.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-LightItalic-Trial.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Regular-Trial.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-RegularItalic-Trial.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Medium-Trial.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-MediumItalic-Trial.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Bold-Trial.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-BoldItalic-Trial.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Black-Trial.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-BlackItalic-Trial.woff2') format('woff2');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Heavy-Trial.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-HeavyItalic-Trial.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-Ultra-Trial.woff2') format('woff2');
+    font-weight: 950;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'ABCDiatype';
+    src: url('../../public/fonts/ABCDiatype-UltraItalic-Trial.woff2') format('woff2');
+    font-weight: 950;
+    font-style: italic;
+    font-display: swap;
+}
+
