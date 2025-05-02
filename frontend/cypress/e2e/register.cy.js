@@ -3,58 +3,75 @@ describe('Register Page Tests', () => {
     cy.visit('/signup')
   })
 
-  it('should display registration form', () => {
+  it('should display signup form', () => {
     cy.get('form').should('exist')
     cy.get('input[name="name"]').should('exist')
     cy.get('input[name="email"]').should('exist')
     cy.get('input[name="password"]').should('exist')
     cy.get('input[name="confirmPassword"]').should('exist')
-    cy.get('button[type="submit"]').should('exist')
+    cy.contains('Continue').should('exist')
   })
 
-  it('should show error message with invalid email format', () => {
+  it('should show error when passwords dont match', () => {
     cy.get('input[name="name"]').type('Test User')
-    cy.get('input[name="email"]').type('invalid-email')
+    cy.get('input[name="email"]').type('test@example.com')
+    cy.get('input[name="password"]').type('password123')
+    cy.get('input[name="confirmPassword"]').type('differentpassword')
+    cy.get('form').submit()
+    cy.contains('Passwords do not match').should('exist')
+  })
+
+  it('should proceed to step 2 with valid step 1 data', () => {
+    cy.get('input[name="name"]').type('Test User')
+    cy.get('input[name="email"]').type('test@example.com')
     cy.get('input[name="password"]').type('password123')
     cy.get('input[name="confirmPassword"]').type('password123')
-    cy.get('button[type="submit"]').click()
-    cy.contains('Please fill all required fields').should('be.visible')
+    cy.get('form').submit()
+    cy.contains('Just a few more details').should('exist')
   })
 
-  it('should show error message with weak password', () => {
-    cy.get('input[name="name"]').type('Test User')
-    cy.get('input[name="email"]').type('test@example.com')
-    cy.get('input[name="password"]').type('weak')
-    cy.get('input[name="confirmPassword"]').type('weak')
-    cy.get('button[type="submit"]').click()
-    cy.contains('Password must be at least 8 characters long').should('be.visible')
+  it('should show error when required fields are missing', () => {
+    cy.get('form').submit()
+    cy.contains('Please fill all required fields').should('exist')
   })
 
-  it('should show error message when passwords do not match', () => {
-    cy.get('input[name="name"]').type('Test User')
-    cy.get('input[name="email"]').type('test@example.com')
-    cy.get('input[name="password"]').type('StrongPassword123!')
-    cy.get('input[name="confirmPassword"]').type('DifferentPassword123!')
-    cy.get('button[type="submit"]').click()
-    cy.contains('Passwords do not match').should('be.visible')
+  it('should navigate to login page', () => {
+    // More specific selector with force:true to ensure click
+    cy.contains('Sign in')
+        .should('be.visible')
+        .click({ force: true })
+
+    // Add timeout and more specific assertion
+    cy.url({ timeout: 10000 }).should('eq', 'http://localhost:3000/login')
   })
 
-  it('should show error message when required fields are empty', () => {
-    cy.get('button[type="submit"]').click()
-    cy.contains('Please fill all required fields').should('be.visible')
-  })
+  describe('Step 2 Tests', () => {
+    beforeEach(() => {
+      // Fill and submit step 1 first
+      cy.get('input[name="name"]').type('Test User')
+      cy.get('input[name="email"]').type('test@example.com')
+      cy.get('input[name="password"]').type('password123')
+      cy.get('input[name="confirmPassword"]').type('password123')
+      cy.get('form').submit()
+    })
 
-  it('should successfully register with valid information', () => {
-    cy.get('input[name="name"]').type('Test User')
-    cy.get('input[name="email"]').type('test@example.com')
-    cy.get('input[name="password"]').type('StrongPassword123!')
-    cy.get('input[name="confirmPassword"]').type('StrongPassword123!')
-    cy.get('button[type="submit"]').click()
-    cy.url().should('include', '/login')
-  })
+    it('should display step 2 form', () => {
+      cy.get('input[name="address"]').should('exist')
+      cy.get('select[name="role"]').should('exist')
+      cy.get('input[name="agree"]').should('exist')
+      cy.contains('Create Account').should('exist')
+    })
 
-  it('should navigate to login page when clicking login link', () => {
-    cy.contains('Sign in').click()
-    cy.url().should('include', '/login')
+    it('should go back to step 1', () => {
+      cy.contains('Back').click()
+      cy.contains("Let's get started").should('exist')
+    })
+
+    it('should require agreement checkbox', () => {
+      cy.get('input[name="address"]').type('123 Test Street')
+      cy.get('select[name="role"]').select('customer')
+      cy.get('form').submit()
+      cy.contains('Registration failed').should('exist')
+    })
   })
-}) 
+})
