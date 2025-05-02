@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5555/api";
 
 axios.interceptors.request.use((config) => {
     const token = getToken();
@@ -14,19 +14,17 @@ export const login = async (email, password) => {
     if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("role", response.data.role);
-       localStorage.setItem('restaurantId', response.data.restaurantId);
     }
     return response.data;
 };
 
-export const register = async (name, email, password, role, restaurantId) => {
-    return axios.post(`${API_URL}/register`, { name, email, password, role, restaurantId });
+export const register = async (name, email, password, role) => {
+    return axios.post(`${API_URL}/register`, { name, email, password, role });
 };
 
 export const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-  localStorage.removeItem("restaurantId");
 };
 
 export const getToken = () => localStorage.getItem("token");

@@ -18,8 +18,6 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [restaurants, setRestaurants] = useState([]);
-  const [selectedRestaurant, setSelectedRestaurant] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -69,13 +67,11 @@ const Signup = () => {
     setLoading(true);
 
     try {
-      const restaurantId = formData.role === "restaurant-staff" ? selectedRestaurant : null;
       await register(
         formData.name,
         formData.email,
         formData.password,
         formData.role,
-        restaurantId,
         formData.address
       );
       navigate("/login");
@@ -86,22 +82,7 @@ const Signup = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_RESTAURANT_API_URL}/restaurants`
-        );
-        setRestaurants(response.data);
-      } catch (error) {
-        console.error("Failed to fetch restaurants", error);
-      }
-    };
 
-    if (formData.role === "restaurant-staff") {
-      fetchRestaurants();
-    }
-  }, [formData.role]);
 
   const renderStep1 = () => (
     <div className="space-y-4">
@@ -201,26 +182,6 @@ const Signup = () => {
         </select>
       </div>
 
-      {formData.role === "restaurant-staff" && (
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <ChevronDown className="h-5 w-5 text-gray-400" />
-          </div>
-          <select
-            value={selectedRestaurant}
-            onChange={(e) => setSelectedRestaurant(e.target.value)}
-            required
-            className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-nomnom focus:border-transparent transition-all appearance-none text-gray-700"
-          >
-            <option value="">Select Restaurant</option>
-            {restaurants.map((restaurant) => (
-              <option key={restaurant._id} value={restaurant._id}>
-                {restaurant.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
 
       <div className="mt-4">
         <label className="flex items-center text-gray-600">
