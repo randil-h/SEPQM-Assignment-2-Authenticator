@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       await login(formData.email, formData.password);
-      navigate("/resops-dashboard");
+      navigate("/");
     } catch (err) {
       setError("Invalid credentials. Please try again.");
     } finally {
