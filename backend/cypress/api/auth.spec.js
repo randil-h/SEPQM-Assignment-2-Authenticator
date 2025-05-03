@@ -1,11 +1,10 @@
 describe('Authentication API', () => {
-    const baseUrl = 'http://localhost:3000/api';
+    const baseUrl = 'http://localhost:5555/api';
     const testUser = {
         username: `testuser_${Date.now()}`,
         password: 'Test123!@#'
     };
 
-    // Helper function to make API requests
     const apiRequest = (method, url, body = null) => {
         return cy.request({
             method,
