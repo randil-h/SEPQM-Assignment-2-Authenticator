@@ -64,6 +64,13 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    
+    // Add validation for the agree checkbox
+    if (!formData.agree) {
+      setError("You must agree to the terms and conditions");
+      return;
+    }
+    
     setLoading(true);
 
     try {
